@@ -2,8 +2,8 @@
 #define SIMPLEPARALLEL_ANALYZER_H
 
 #include <Analyzer.h>
-#include "SimpleParallelAnalyzerResults.h"
-#include "SimpleParallelSimulationDataGenerator.h"
+#include "ParallelCSAnalyzerResults.h"
+#include "ParallelCSSimulationDataGenerator.h"
 
 class SimpleParallelAnalyzerSettings;
 class SimpleParallelAnalyzer : public Analyzer2
