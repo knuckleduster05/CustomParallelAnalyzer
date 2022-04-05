@@ -1,7 +1,7 @@
-#include "SimpleParallelAnalyzerResults.h"
+#include "ParallelCSAnalyzerResults.h"
 #include <AnalyzerHelpers.h>
-#include "SimpleParallelAnalyzer.h"
-#include "SimpleParallelAnalyzerSettings.h"
+#include "ParallelCSAnalyzer.h"
+#include "ParallelCSAnalyzerSettings.h"
 #include <iostream>
 #include <sstream>
 #include <stdio.h>

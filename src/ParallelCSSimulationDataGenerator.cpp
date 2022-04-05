@@ -1,5 +1,5 @@
-#include "SimpleParallelSimulationDataGenerator.h"
-#include "SimpleParallelAnalyzerSettings.h"
+#include "ParallelCSSimulationDataGenerator.h"
+#include "ParallelCSAnalyzerSettings.h"
 
 #include <AnalyzerHelpers.h>
 

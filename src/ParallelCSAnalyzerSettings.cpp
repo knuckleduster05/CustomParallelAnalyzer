@@ -1,4 +1,4 @@
-#include "SimpleParallelAnalyzerSettings.h"
+#include "ParallelCSAnalyzerSettings.h"
 #include <AnalyzerHelpers.h>
 #include <stdio.h>
 
