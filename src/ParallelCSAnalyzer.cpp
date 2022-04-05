@@ -1,5 +1,5 @@
-#include "SimpleParallelAnalyzer.h"
-#include "SimpleParallelAnalyzerSettings.h"
+#include "ParallelCSAnalyzer.h"
+#include "ParallelCSAnalyzerSettings.h"
 #include <AnalyzerChannelData.h>
 
 SimpleParallelAnalyzer::SimpleParallelAnalyzer()
