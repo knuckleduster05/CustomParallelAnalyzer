@@ -143,12 +143,12 @@ U32 SimpleParallelAnalyzer::GetMinimumSampleRateHz()
 
 const char* SimpleParallelAnalyzer::GetAnalyzerName() const
 {
-	return "Simple Parallel";
+	return "ParallelCS";
 }
 
 const char* GetAnalyzerName()
 {
-	return "Simple Parallel";
+	return "Parallel w/ Chip Select";
 }
 
 Analyzer* CreateAnalyzer()
