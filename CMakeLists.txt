@@ -7,14 +7,14 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 include(ExternalAnalyzerSDK)
 
 set(SOURCES 
-src/SimpleParallelAnalyzer.cpp
-src/SimpleParallelAnalyzer.h
-src/SimpleParallelAnalyzerResults.cpp
-src/SimpleParallelAnalyzerResults.h
-src/SimpleParallelAnalyzerSettings.cpp
-src/SimpleParallelAnalyzerSettings.h
-src/SimpleParallelSimulationDataGenerator.cpp
-src/SimpleParallelSimulationDataGenerator.h
+src/ParallelCSAnalyzer.cpp
+src/ParallelCSAnalyzer.h
+src/ParallelCSAnalyzerResults.cpp
+src/ParallelCSAnalyzerResults.h
+src/ParallelCSAnalyzerSettings.cpp
+src/ParallelCSAnalyzerSettings.h
+src/ParallelCSSimulationDataGenerator.cpp
+src/ParallelCSSimulationDataGenerator.h
 )
 
 add_analyzer_plugin(simple_parallel_analyzer SOURCES ${SOURCES})
