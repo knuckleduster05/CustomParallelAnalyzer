@@ -19,7 +19,7 @@ void SimpleParallelAnalyzer::SetupResults()
 {
 	mResults.reset( new SimpleParallelAnalyzerResults( this, mSettings.get() ) );
 	SetAnalyzerResults( mResults.get() );
-	mResults->AddChannelBubblesWillAppearOn( mSettings->mClockChannel );
+	mResults->AddChannelBubblesWillAppearOn( mSettings->mChipSelectChannel );
 }
 
 void SimpleParallelAnalyzer::WorkerThread()
