@@ -93,9 +93,11 @@ void SimpleParallelAnalyzer::WorkerThread()
 	{
 		if(mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge ) {
 			if( mChipSelect->GetBitState() == BIT_HIGH)
+				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		} else {
 			if( mChipSelect->GetBitState() == BIT_LOW)
+				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		}
 		
