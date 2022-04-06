@@ -72,6 +72,8 @@ void SimpleParallelAnalyzer::WorkerThread()
 
 	mChipSelect->AdvanceToNextEdge();
 	
+	mResults->AddMarker( sample, AnalyzerResults::Dot, mChipSelect );
+	
 	mClock->AdvanceToAbsPosition(mChipSelect->GetSampleNumber()-1);
 
 	if( mSettings->mClockEdge == AnalyzerEnums::NegEdge )
