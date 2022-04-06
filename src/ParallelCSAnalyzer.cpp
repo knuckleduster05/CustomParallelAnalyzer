@@ -96,11 +96,11 @@ void SimpleParallelAnalyzer::WorkerThread()
 		U64 sample = mClock->GetSampleNumber();
 		mChipSelect->AdvanceToAbsPosition(sample);
 		if(mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge ) {
-			if( mChipSelect->GetBitState() == BIT_HIGH)
+			if( mChipSelect->GetBitState() != BIT_HIGH)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		} else {
-			if( mChipSelect->GetBitState() == BIT_LOW)
+			if( mChipSelect->GetBitState() != BIT_LOW)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		}
