@@ -8,6 +8,7 @@
 SimpleParallelAnalyzerSettings::SimpleParallelAnalyzerSettings()
 :	
 	mChipSelectChannel( UNDEFINED_CHANNEL ),
+	mChipSelectEdge( AnalyzerEnums::PosEdge ),
 	mClockChannel( UNDEFINED_CHANNEL ),
 	mClockEdge( AnalyzerEnums::PosEdge )
 {
@@ -31,6 +32,12 @@ SimpleParallelAnalyzerSettings::SimpleParallelAnalyzerSettings()
 	mChipSelectChannelInterface->SetTitleAndTooltip( "CS", "Chip Select" );
 	mChipSelectChannelInterface->SetChannel( mChipSelectChannel );
 
+	mChipSelectEdgeInterface.reset( new AnalyzerSettingInterfaceNumberList() );
+	mChipSelectEdgeInterface->SetTitleAndTooltip( "Chip Select Edge", "Select if CS is active after a rising or falling edge" );
+	mChipSelectEdgeInterface->AddNumber( AnalyzerEnums::PosEdge, "Rising edge", "" );
+	mChipSelectEdgeInterface->AddNumber( AnalyzerEnums::NegEdge, "Falling edge", "" );
+	mChipSelectEdgeInterface->SetNumber( mChipSelectEdge );
+
 	mClockChannelInterface.reset( new AnalyzerSettingInterfaceChannel() );
 	mClockChannelInterface->SetTitleAndTooltip( "Clock", "Clock" );
 	mClockChannelInterface->SetChannel( mClockChannel );
@@ -49,6 +56,7 @@ SimpleParallelAnalyzerSettings::SimpleParallelAnalyzerSettings()
 	}
 
 	AddInterface( mChipSelectChannelInterface.get() );
+	AddInterface( mChipSelectEdgeInterface.get() );
 	AddInterface( mClockChannelInterface.get() );
 	AddInterface( mClockEdgeInterface.get() );
 
@@ -97,6 +105,7 @@ bool SimpleParallelAnalyzerSettings::SetSettingsFromInterfaces()
 	}
 
 	mChipSelectChannel = mChipSelectChannelInterface->GetChannel();
+	mChipSelectEdge = AnalyzerEnums::EdgeDirection( U32( mChipSelectEdgeInterface->GetNumber() ) );
 	mClockChannel = mClockChannelInterface->GetChannel();
 	mClockEdge = AnalyzerEnums::EdgeDirection( U32( mClockEdgeInterface->GetNumber() ) );
 
@@ -123,6 +132,7 @@ void SimpleParallelAnalyzerSettings::UpdateInterfacesFromSettings()
 	}
 
 	mChipSelectChannelInterface->SetChannel( mChipSelectChannel );
+	mChipSelectEdgeInterface->SetNumber( mChipSelectEdge );
 	mClockChannelInterface->SetChannel( mClockChannel );
 	mClockEdgeInterface->SetNumber( mClockEdge );
 }
@@ -140,6 +150,7 @@ void SimpleParallelAnalyzerSettings::LoadSettings( const char* settings )
 	}
 
 	text_archive >> mChipSelectChannel;
+	text_archive >> *(U32*) &mChipSelectEdge;
 	text_archive >> mClockChannel;
 	text_archive >> *(U32*)&mClockEdge;
 
@@ -169,6 +180,7 @@ const char* SimpleParallelAnalyzerSettings::SaveSettings()
 	}
 
 	text_archive << mChipSelectChannel;
+	text_archive << mChipSelectEdge;
 	text_archive << mClockChannel;
 	text_archive << mClockEdge;
 
