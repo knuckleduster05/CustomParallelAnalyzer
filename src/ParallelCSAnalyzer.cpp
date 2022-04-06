@@ -65,12 +65,14 @@ void SimpleParallelAnalyzer::WorkerThread()
 			mChipSelect->AdvanceToNextEdge();
 	}
 	
-	mChipSelect->AdvanceToNextEdge();
-	
-	mClock->AdvanceToAbsPosition(mChipSelect->GetSampleNumber()-1);
+
 
 	for( ; ; ) //Wrap the parallel analyzer in a chip select analyzer
 	{
+
+	mChipSelect->AdvanceToNextEdge();
+	
+	mClock->AdvanceToAbsPosition(mChipSelect->GetSampleNumber()-1);
 
 	if( mSettings->mClockEdge == AnalyzerEnums::NegEdge )
 	{
