@@ -24,16 +24,17 @@ void SimpleParallelAnalyzer::SetupResults()
 
 void SimpleParallelAnalyzer::WorkerThread()
 {
-
+	//Store sample rate of analyzer
 	mSampleRateHz = GetSampleRate();
 
+	//Set type of arrow to show when putting arrow on clock graphic
 	AnalyzerResults::MarkerType clock_arrow;
 	if( mSettings->mClockEdge == AnalyzerEnums::NegEdge )
 		clock_arrow = AnalyzerResults::DownArrow;
 	else
 		clock_arrow = AnalyzerResults::UpArrow;
 
-
+	//Get all data on the clock channel that is available?
 	mClock = GetAnalyzerChannelData( mSettings->mClockChannel );
 	mData.clear();
 	mDataMasks.clear();
