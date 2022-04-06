@@ -72,7 +72,7 @@ void SimpleParallelAnalyzer::WorkerThread()
 
 	mChipSelect->AdvanceToNextEdge();
 	
-	mResults->AddMarker( sample, AnalyzerResults::Dot, mChipSelect );
+	mResults->AddMarker( mChipSelect.GetSampleNumber(), AnalyzerResults::Dot, mChipSelect );
 	
 	mClock->AdvanceToAbsPosition(mChipSelect->GetSampleNumber()-1);
 
