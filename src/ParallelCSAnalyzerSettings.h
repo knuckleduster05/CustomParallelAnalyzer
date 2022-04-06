@@ -17,6 +17,7 @@ public:
 
 	
 	std::vector< Channel > mDataChannels;
+	Channel mChipSelectChannel;
 	Channel mClockChannel;
 
 	AnalyzerEnums::EdgeDirection mClockEdge;
@@ -24,6 +25,7 @@ public:
 protected:
 	std::vector< AnalyzerSettingInterfaceChannel* > mDataChannelsInterface;
 
+	std::auto_ptr< AnalyzerSettingInterfaceChannel >    mChipSelectChannelInterface;
 	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mClockChannelInterface;
 	std::auto_ptr< AnalyzerSettingInterfaceNumberList >	mClockEdgeInterface;
 };
