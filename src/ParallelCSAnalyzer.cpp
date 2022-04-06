@@ -78,11 +78,11 @@ void SimpleParallelAnalyzer::WorkerThread()
 
 	if( mSettings->mClockEdge == AnalyzerEnums::NegEdge )
 	{
-		if( mClock->GetBitState() != BIT_LOW )
+		if( mClock->GetBitState() == BIT_LOW )
 			mClock->AdvanceToNextEdge();
 	}else
 	{
-		if( mClock->GetBitState() != BIT_HIGH )
+		if( mClock->GetBitState() == BIT_HIGH )
 			mClock->AdvanceToNextEdge();
 	}
 
@@ -94,11 +94,11 @@ void SimpleParallelAnalyzer::WorkerThread()
 	for( ; ; )
 	{
 		if(mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge ) {
-			if( mChipSelect->GetBitState() == BIT_HIGH)
+			if( mChipSelect->GetBitState() != BIT_HIGH)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		} else {
-			if( mChipSelect->GetBitState() == BIT_LOW)
+			if( mChipSelect->GetBitState() != BIT_LOW)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		}
