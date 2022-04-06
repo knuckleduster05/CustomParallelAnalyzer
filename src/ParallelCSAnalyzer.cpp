@@ -53,6 +53,23 @@ void SimpleParallelAnalyzer::WorkerThread()
 
 	U32 num_data_lines = mData.size();
 
+	if( mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge )
+	{
+		if( mChipSelect->GetBitState() == BIT_LOW )
+			mChipSelect->AdvanceToNextEdge();
+	}else
+	{
+		if( mChipSelect->GetBitState() == BIT_HIGH )
+			mChipSelect->AdvanceToNextEdge();
+	}
+	
+	mChipSelect->AdvanceToNextEdge();
+	
+	mClock->AdvanceToAbsPosition(mChipSelect->GetSampleNumber()-1);
+
+	for( ; ; ) //Wrap the parallel analyzer in a chip select analyzer
+	{
+
 	if( mSettings->mClockEdge == AnalyzerEnums::NegEdge )
 	{
 		if( mClock->GetBitState() == BIT_LOW )
@@ -70,6 +87,13 @@ void SimpleParallelAnalyzer::WorkerThread()
 	bool added_last_frame = false;
 	for( ; ; )
 	{
+		if(mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge ) {
+			if( mChipSelect->GetBitState() == BIT_HIGH)
+				break;
+		} else {
+			if( mChipSelect->GetBitState() == BIT_LOW)
+				break;
+		}
 		
 		//here we found a rising edge at the mark. Add images to mResults
 		U64 sample = mClock->GetSampleNumber();
@@ -118,6 +142,7 @@ void SimpleParallelAnalyzer::WorkerThread()
 		mResults->AddFrame( frame );
 		mResults->CommitResults();
 		ReportProgress( frame.mEndingSampleInclusive );
+	}
 	}
 }
 
