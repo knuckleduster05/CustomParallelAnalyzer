@@ -35,6 +35,8 @@ void SimpleParallelAnalyzer::WorkerThread()
 		clock_arrow = AnalyzerResults::UpArrow;
 
 	//Get all data on the clock channel that is available?
+	
+	mChipSelect = GetAnalyzerChannelData( mSettings->mChipSelectChannel );
 	mClock = GetAnalyzerChannelData( mSettings->mClockChannel );
 	mData.clear();
 	mDataMasks.clear();
