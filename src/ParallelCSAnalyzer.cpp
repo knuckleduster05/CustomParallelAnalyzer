@@ -93,18 +93,20 @@ void SimpleParallelAnalyzer::WorkerThread()
 	bool added_last_frame = false;
 	for( ; ; )
 	{
+		U64 sample = mClock->GetSampleNumber();
+		mChpSelect->AdvanceToAbsPosition(sample);
 		if(mSettings->mChipSelectEdge == AnalyzerEnums::NegEdge ) {
-			if( mChipSelect->GetBitState() != BIT_HIGH)
+			if( mChipSelect->GetBitState() == BIT_HIGH)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		} else {
-			if( mChipSelect->GetBitState() != BIT_LOW)
+			if( mChipSelect->GetBitState() == BIT_LOW)
 				mChipSelect->AdvanceToNextEdge(); //Skip all between non cs
 				break;
 		}
 		
 		//here we found a rising edge at the mark. Add images to mResults
-		U64 sample = mClock->GetSampleNumber();
+		
 		mResults->AddMarker( sample, clock_arrow, mSettings->mClockChannel );
 
 		U16 result = 0;
