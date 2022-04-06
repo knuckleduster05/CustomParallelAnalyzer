@@ -48,6 +48,7 @@ SimpleParallelAnalyzerSettings::SimpleParallelAnalyzerSettings()
 		AddInterface( mDataChannelsInterface[i] );
 	}
 
+	AddInterface( mChipSelectChannelInterface.get() );
 	AddInterface( mClockChannelInterface.get() );
 	AddInterface( mClockEdgeInterface.get() );
 
